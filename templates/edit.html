@@ -1,0 +1,14 @@
+{%extends 'home.html'%} {%block title %} Edit User {%endblock%} {%block content
+%}
+<img src="{{user.image_url}}" alt="user-image" />
+<h1>Edit User: {{user.full_name}}</h1>
+<form action="/users/{{user.id}}/edit" method="POST">
+  <input type="text" placeholder="first name" name="first_name" />
+  <input type="text" placeholder="last name" name="last_name" />
+  <input
+    type="text"
+    placeholder="img-url ex. https://image.jpg"
+    name="img_url" />
+  <button>Submit</button>
+</form>
+{%endblock%}

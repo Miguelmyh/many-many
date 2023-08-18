@@ -1,0 +1,10 @@
+{%extends 'home.html'%} {%block title %} Edit User {%endblock%} {%block content
+%}
+<h1>Add User</h1>
+<form action="/users/new" method="POST">
+  <input type="text" placeholder="first name" name="first_name" />
+  <input type="text" placeholder="last name" name="last_name" />
+  <input type="text" placeholder="img-url ex. https://image.jpg" />
+  <button>Submit</button>
+</form>
+{%endblock%}

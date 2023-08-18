@@ -1,0 +1,21 @@
+{%extends 'home.html'%}{%block title %}Details {{user.first_name}}{%endblock%}
+{%block content %}
+<div class="block">
+  <div class="img">
+    <figure>
+      <img src="{{user.image_url}}" alt="user-image" />
+    </figure>
+  </div>
+  <div class="top">
+    <h1>{{user.full_name}}</h1>
+  </div>
+  <div class="bottom">
+    <form action="/users/{{user.id}}/edit">
+      <button type="submit">Edit</button>
+    </form>
+    <form action="/users/{{user.id}}/delete">
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+</div>
+{%endblock%}
