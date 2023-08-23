@@ -35,6 +35,14 @@
         <button>Add new user</button>
       </form>
     </div>
+    <div class="post-list">
+      <h1>Posts</h1>
+      <ul>
+        {%for post in posts %}
+        <li>{{post.title}}</li>
+        {%endfor%}
+      </ul>
+    </div>
     {%endblock%}
   </body>
 </html>

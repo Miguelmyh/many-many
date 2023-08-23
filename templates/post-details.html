@@ -1,0 +1,35 @@
+{%extends 'home.html'%}{%block title %}{{post.title}}{%endblock%} {%block
+content %}
+
+<div class="main">
+  <div class="header">
+    <h1>POST!!</h1>
+  </div>
+  <div class="content">
+    <div>
+      <h2>{{post.title}}</h2>
+      <h5>
+        date of creation:{{post.created_at}} <br />
+        updated on: {{post.updated_at}}
+      </h5>
+      <p>{{post.content}}</p>
+    </div>
+  </div>
+  <div class="footer">
+    <p>By {{post.user.full_name}}</p>
+  </div>
+
+  <div class="btns">
+    <div class="redirect-btns">
+      <form action="/posts/{{post.id}}/edit">
+        <button class="edit">Edit</button>
+      </form>
+      <form action="/posts/{{post.id}}/delete">
+        <button class="delete">Delete</button>
+      </form>
+    </div>
+    <button onclick="history.back()" class="return-btn">Return</button>
+  </div>
+</div>
+
+{%endblock%}

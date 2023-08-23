@@ -1,0 +1,32 @@
+{%extends 'home.html'%}{%block title%} Post edit {%endblock%} {%block content%}
+<h1>{{post.title}}</h1>
+
+<form action="/posts/{{post.id}}/edit" method="POST" id="post-form">
+  <div class="post-div-title">
+    <label for="title" class="labels label-title">Title</label>
+    <input
+      type="text"
+      value="{{post.title}}"
+      name="title"
+      class="post-inp post-title" />
+  </div>
+  <div class="post-div-content">
+    <label for="content" class="labels">Content</label>
+      <textarea
+        id="content"
+        value="{{post.content}}"
+        name="content"
+        class="post-inp">
+{{post.content}}</textarea
+      >
+    </div>
+  </div>
+  <div class="buttons-edit">
+    <button onclick="history.back()" type="button" class="post-btn return-btn">
+      Cancel
+    </button>
+    <button class="post-btn edit">Edit</button>
+  </div>
+</form>
+
+{%endblock%}

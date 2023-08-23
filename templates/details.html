@@ -1,21 +1,36 @@
 {%extends 'home.html'%}{%block title %}Details {{user.first_name}}{%endblock%}
 {%block content %}
 <div class="block">
-  <div class="img">
+  <div class="img left">
     <figure>
       <img src="{{user.image_url}}" alt="user-image" />
     </figure>
   </div>
-  <div class="top">
-    <h1>{{user.full_name}}</h1>
-  </div>
-  <div class="bottom">
-    <form action="/users/{{user.id}}/edit">
-      <button type="submit">Edit</button>
-    </form>
-    <form action="/users/{{user.id}}/delete">
-      <button type="submit">Delete</button>
-    </form>
+  <div class="right">
+    <div class="top">
+      <h1>{{user.full_name}}</h1>
+    </div>
+    <div class="bottom">
+      <form action="/users/{{user.id}}/edit">
+        <button class="edit">Edit</button>
+      </form>
+      <form action="/users/{{user.id}}/delete">
+        <button class="delete">Delete</button>
+      </form>
+    </div>
+    <div class="posts">
+      <h2>Posts</h2>
+      <ul>
+        {%for post in posts %}
+        <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+        {%endfor%}
+      </ul>
+    </div>
+    <div class="new-post-div">
+      <form action="/users/{{user.id}}/posts/new">
+        <button>New Post</button>
+      </form>
+    </div>
   </div>
 </div>
 {%endblock%}

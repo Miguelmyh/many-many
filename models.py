@@ -1,5 +1,6 @@
 """Models for Blogly."""
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 
 db = SQLAlchemy()
 
@@ -10,6 +11,7 @@ def connect_db(app):
     
 class User(db.Model):
     __tablename__ = 'users'
+    
     """User model"""
     id = db.Column(db.Integer, 
                    primary_key=True, 
@@ -21,6 +23,7 @@ class User(db.Model):
     image_url = db.Column(db.String,
                           nullable=True,
                           default = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png")
+    
     # can also use @property and later @full_name.setter/getter/deleter
     
         
@@ -78,3 +81,54 @@ class User(db.Model):
         user = User.query.get(self.id)
         db.session.delete(user)
         db.session.commit()
+        
+    def new_post(self, title, content, user_id):
+        post = Post(title=title, content=content, user_id=user_id)
+        db.session.add(post)
+        db.session.commit() 
+   
+   
+        
+class Post(db.Model):
+    """Post model class"""
+    
+    __tablename__ = 'posts'
+    
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    title = db.Column(db.String,
+                      nullable=False,
+                      unique=True)
+    content = db.Column(db.Text,
+                        nullable = False)
+    created_at = db.Column(db.TIMESTAMP,
+                           default = func.now())
+    updated_at = db.Column(db.TIMESTAMP,
+                           default = func.now(),
+                           onupdate = func.now())
+    
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey('users.id', ondelete = 'CASCADE'),
+                        nullable = True)
+    
+    user = db.relationship('User', backref='posts', passive_deletes = True)
+    
+    def update_post(self,title, content):
+        post = Post.query.get(self.id)
+        if not title or not content:
+            db.session.rollback()
+            raise Exception('No values to be updated')
+        else:
+            post.title = title
+            post.content = content
+            
+            db.session.add(post)
+            db.session.commit()
+            
+    def delete_post(self):
+        post = Post.query.get(self.id)
+        
+        db.session.delete(post)
+        db.session.commit()
+           
