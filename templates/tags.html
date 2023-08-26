@@ -1,0 +1,16 @@
+{%extends 'home.html'%}{%block title%} Tags {%endblock%} {%block content%}
+<h1>Tags</h1>
+
+<div>
+  <ul>
+    {%for tag in tags %}
+    <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
+    {%endfor%}
+  </ul>
+</div>
+<div>
+  <form action="/tags/new">
+    <button>add new tag</button>
+  </form>
+</div>
+{%endblock%}

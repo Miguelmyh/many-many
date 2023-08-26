@@ -20,6 +20,23 @@
 {{post.content}}</textarea
       >
     </div>
+    <div class="tags">
+      {%for tag in tags%}
+      {%if tag in own_tags%}
+      <div class="tag">
+        <input type="hidden" name="!tag" value="{{tag.id}}" />
+        <input type="checkbox" name="tag" checked value="{{tag.id}}" />
+        <label for="post">{{tag.name}}</label>
+      </div>
+      {%else%}
+      <div class="tag">
+        <!-- <input type="hidden" name="!tag" value="{{tag.id}}" /> -->
+        <input type="checkbox" name="tag" value="{{tag.id}}" />
+        <label for="tag">{{tag.name}}</label>
+      </div>
+      {%endif%}
+      {%endfor%}
+    </div>
   </div>
   <div class="buttons-edit">
     <button onclick="history.back()" type="button" class="post-btn return-btn">

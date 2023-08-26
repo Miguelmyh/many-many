@@ -19,6 +19,15 @@
           placeholder="Content"
           class="post-inp"></textarea>
       </div>
+      <div class="tags">
+        {%for tag in tags%}
+        <div class="tag">
+          <!-- <input type="hidden" name="{{tag[1]}}" value="no" /> -->
+          <input type="checkbox" name="tag" value="{{tag.id}}" />
+          <label for="tag">{{tag.name}}</label>
+        </div>
+        {%endfor%}
+      </div>
       <div class="buttons-edit">
         <button
           onclick="history.back()"

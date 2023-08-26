@@ -1,8 +1,39 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 img {
   height: 10rem;
+}
+
+.container {
+  padding: 20px;
+}
+
+.nav {
+  margin-top: 0;
+  display: flex;
+  justify-content: end;
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.nav-li {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
+}
+
+.nav-li a {
+  text-decoration: none;
+  background-color: black;
+  padding: 10px;
+  color: white;
 }
 
 .block {
@@ -123,4 +154,31 @@ img {
 .buttons-edit {
   width: 66rem;
   text-align: end;
+}
+
+.bt {
+  margin-top: 10px;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.post {
+  display: flex;
+  margin-top: 5px;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  color: black;
+}
+
+.tag {
+  display: flex;
+  margin-top: 5px;
 }

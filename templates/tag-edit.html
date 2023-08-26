@@ -1,0 +1,43 @@
+{%extends 'home.html'%}{%block title%} Tags {%endblock%} {%block content%}
+<h1>Tags</h1>
+
+<div>
+  <form action="/tags/{{tag.id}}/edit" method="POST">
+    <div>
+      <div class="post-div-title">
+        <label for="name_tag" class="labels label-title">Name</label>
+        <input
+          type="text"
+          name="name_tag"
+          value="{{tag.name}}"
+          class="post-title" />
+      </div>
+      <div class="posts">
+        {%for post in posts%} {%if post in common_posts%}
+        <div class="post">
+          <input type="hidden" name="!post" value="{{post.id}}" />
+          <input type="checkbox" name="post" checked value="{{post.id}}" />
+          <label for="post">{{post.title}}</label>
+        </div>
+        {%else%}
+        <div class="post">
+          <!-- <input type="hidden" name="!post" value="no/{{post.id}}" /> -->
+          <input type="checkbox" name="post" value="{{post.id}}" />
+          <label for="post">{{post.title}}</label>
+        </div>
+        {%endif%} {%endfor%}
+      </div>
+      <div class="buttons-edit bt">
+        <button
+          onclick="history.back()"
+          type="button"
+          class="post-btn return-btn">
+          Cancel
+        </button>
+        <button class="post-btn edit">Add</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{%endblock%}
